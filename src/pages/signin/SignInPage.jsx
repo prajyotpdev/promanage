@@ -1,9 +1,10 @@
 import React from "react";
-import "../signin/SignInPage.css";
+import styles from "../signin/SignInPage.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginAsync, selectUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import ArtImage from "../../assets/images/LoginPageArt.png";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -62,41 +63,44 @@ const SignInPage = () => {
 
   const routeChange = () => {
     let path = `signup`;
-    navigate("/signup");
+    navigate("/promanage/register");
   };
 
   return (
-    <div className="screen">
-      <div className="leftside">
-        <div className="Heading">
-          <h1>Sign In Page</h1>
-          <h3>Your personal job finder is here</h3>
-          <div className="App">
-            <form onSubmit={handleSignIn}>
-              <input placeholder="Email" type="email" onChange={handleEmail} />
-              <input
-                placeholder="Password"
-                type="password"
-                onChange={handlePassword}
-              />
-              <button type="submit" className="btn">
-                Submit
-              </button>
-              <div className="signup" onClick={routeChange}>
-                Don't have an account?{" "}
-                <div className="signupbtn">
-                  <u>Sign Up</u>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+    <div className={styles.signInContainer}>
+      <div className={styles.leftSide}>
+        <img src={ArtImage} alt="Logo" />
+        <h2>Welcome aboard my friend</h2>
+        <h4>just a couple of clicks and we start</h4>
       </div>
-      <div className="rightside">
-        <img
-          src="https://images.pexels.com/photos/7660824/pexels-photo-7660824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt=""
-        />
+      <div className={styles.rightSide}>
+        <div className={styles.heading}>
+          <h1>Login</h1>
+        </div>
+        {/* <h3>Your personal job finder is here</h3> */}
+        <div className={styles.signInForm}>
+          <form onSubmit={handleSignIn} className={styles.signInForm}>
+            <input
+              className={styles.inputfield}
+              placeholder="Email"
+              type="email"
+              onChange={handleEmail}
+            />
+            <input
+              className={styles.inputfield}
+              placeholder="Password"
+              type="password"
+              onChange={handlePassword}
+            />
+            <button type="submit" className={styles.submitbtn}>
+              Log in
+            </button>
+            <div className={styles.signup} onClick={routeChange}>
+              Have no account yet?{" "}
+              <div className={styles.signupbtn}>Register</div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

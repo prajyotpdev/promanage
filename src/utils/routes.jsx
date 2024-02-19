@@ -10,13 +10,14 @@ import AboutPage from "../pages/about/AboutPage";
 import PublishedPage from "../pages/publish_page/PublicPage";
 import DashBoardpage from "../pages/dashboard/DashboardPage";
 import RequireAuth from "../components/auth/require-auth";
+import RegisterPage from "../pages/register/RegisterPage";
 
 const RouteManager = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   console.log("State", state);
   const currentUser = useSelector(selectUser);
-  console.log("its selectUser" + currentUser);
+  console.log("its selectUser" + JSON.stringify(currentUser));
   const [hasFetched, setHasFetched] = useState(false);
   const navigate = useNavigate();
   console.log("User:", !!currentUser);
@@ -59,8 +60,8 @@ const RouteManager = () => {
         element={isLoading ? <LoadingScreen /> : <HomePage />}
       />
       <Route path="/promanage/about" element={<AboutPage />} />
-      {/* <Route path="/promanage/edit" element={<EditDetailsScreen />} />
-      <Route path="/promanage/register" element={<SignUpForm />} /> */}
+      {/* <Route path="/promanage/edit" element={<EditDetailsScreen />} /> */}
+      <Route path="/promanage/register" element={<RegisterPage />} />
       <Route path="/promanage/signin" element={<SignInPage />} />
       {/* <Route path="/promanage/updates" element={<UpdatesPage />} /> */}
       {/* <Route path="/promanage/rough" element={<RoughPage />} /> */}

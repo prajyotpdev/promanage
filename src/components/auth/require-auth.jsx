@@ -10,15 +10,8 @@ function RequireAuth({ children }) {
   let location = useLocation();
 
   if (!currentUser) {
-    // Redirect the user to the home page.
-    // Please! Close the mustache {{}}
-    return (
-      <Navigate to="/rotract-club-thane/" state={{ from: location }} replace />
-    );
+    return <Navigate to="/promanage/" state={{ from: location }} replace />;
   } else {
-    const userRef = doc(db, "users", currentUser?.uid);
-    // setUserRef(userRef); // Set userRef in the context
-    setDoc(userRef, { capital: true }, { merge: true });
     console.log("user is present");
   }
   return children;
