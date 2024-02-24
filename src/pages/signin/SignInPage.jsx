@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { loginAsync, selectUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ArtImage from "../../assets/images/LoginPageArt.png";
+import User from "../../store/models/User";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,15 @@ const SignInPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user.user);
+
+  const [user, setUser] = useState(new User());
+  
+  const updateUser = () => {
+    const updatedUser = new User("prajyot@getTimeMeasureUtils.com");
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+    console.log(JSON.stringify(updatedUser));
+  };
 
   const handleEmail = (e) => {
     setEmail(e.target.value);

@@ -57,7 +57,7 @@ const RouteManager = () => {
     <Routes>
       <Route
         path="/promanage/"
-        element={isLoading ? <LoadingScreen /> : <HomePage />}
+        element={isLoading ? <LoadingScreen /> : <SignInPage />}
       />
       <Route path="/promanage/about" element={<AboutPage />} />
       {/* <Route path="/promanage/edit" element={<EditDetailsScreen />} /> */}
@@ -85,7 +85,7 @@ const RouteManager = () => {
           ) : currentUser ? (
             <DashBoardpage />
           ) : (
-            <HomePage />
+            <DashBoardpage />
           )
         }
       />

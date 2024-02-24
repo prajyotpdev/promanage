@@ -1,0 +1,53 @@
+.card {
+     padding: 1rem;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     width: 100%;
+     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+     margin-bottom: 1rem;
+   }
+   
+   .card-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 0.5rem;
+   }
+   
+   .task-title {
+     font-weight: bold;
+     font-size: 1.2rem;
+   }
+   
+   .task-priority {
+     padding: 0.5rem;
+     border-radius: 4px;
+     background-color: #f0f0f0;
+     text-transform: uppercase;
+     font-weight: bold;
+   }
+   
+   .task-priority.high {
+     background-color: #ff9900;
+   }
+   
+   .task-priority.medium {
+     background-color: #f9f99f;
+   }
+   
+   .task-priority.low {
+     background-color: #99ff99;
+   }
+   
+   .task-details {
+     font-size: 0.9rem;
+   }
+   
+   .task-checklist {
+     list-style: none;
+     padding-left: 0;
+   }
+   
+   .checklist-item {
+     margin-bottom: 0.25rem;
+   }
