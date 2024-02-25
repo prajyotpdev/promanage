@@ -9,12 +9,12 @@ const DashBoardpage = () => {
     taskCheckList: ["subtaksid1", "subtaksid2", "subtaksid3"],
     taskValidity: "2024-02-22T12:34:56.789Z",
     taskStatus: "Done",
-    taskPriority: "Late",
+    taskPriority: "Moderate",
     taskTitle: "Task Title3",
   };
   return (
     <div>
-      <button onClick={clearLocalStorage}>Clear</button>
+      {/* <button onClick={clearLocalStorage}>Clear</button> */}
       <TaskCard task={currentTask} />
     </div>
   );

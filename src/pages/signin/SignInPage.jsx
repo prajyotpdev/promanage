@@ -15,7 +15,7 @@ const SignInPage = () => {
   const state = useSelector((state) => state.user.user);
 
   const [user, setUser] = useState(new User());
-  
+
   const updateUser = () => {
     const updatedUser = new User("prajyot@getTimeMeasureUtils.com");
     localStorage.setItem("user", JSON.stringify(updatedUser));

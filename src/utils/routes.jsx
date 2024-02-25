@@ -83,9 +83,9 @@ const RouteManager = () => {
           isLoading && !currentUser ? (
             <LoadingScreen />
           ) : currentUser ? (
-            <DashBoardpage />
+            <HomePage />
           ) : (
-            <DashBoardpage />
+            <HomePage />
           )
         }
       />

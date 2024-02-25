@@ -1,0 +1,15 @@
+.homepage {
+     display: flex; 
+     height: 100vh; 
+   }
+   
+   .mainContainer {
+     display: flex;
+     flex-direction: column;
+     width: 80vw;
+    }
+
+   .heroContainer {
+     display: flex;
+     flex-direction: row;}
+

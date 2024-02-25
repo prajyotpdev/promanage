@@ -1,53 +1,121 @@
 .card {
-     padding: 1rem;
+     padding: 2rem;
      border: 1px solid #ddd;
      border-radius: 4px;
-     width: 100%;
-     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+     min-width: 312px;
+     max-width: 312px;
+     /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
      margin-bottom: 1rem;
-   }
-   
-   .card-header {
+     border-radius: 20px;
+     font-family: "Poppins";
      display: flex;
-     justify-content: space-between;
-     align-items: center;
-     margin-bottom: 0.5rem;
+     flex-direction: column;
    }
    
+   .cardheader {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     height: 10%;
+     align-items: left;
+     /* background-color: red; */
+   }
+
+   
+  .cardMainSection{
+    height: 60%;    
+    /* background-color: yellow; */
+  }
+
+   .cardfooter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    height: 100%;    
+    /* background-color: green; */
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+   }
+
+   .dot{
+    height: var(--dot-height);
+    width: var(--dot-height);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .collapsible{
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   width: 8%;
+ }
+  
+  .dotColor {
+    background-color: var(--dot-color, #bbb);
+  }
+  .prioritybar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
    .task-title {
      font-weight: bold;
      font-size: 1.2rem;
    }
    
-   .task-priority {
-     padding: 0.5rem;
-     border-radius: 4px;
-     background-color: #f0f0f0;
+   .priority {
+    
+     display: flex;
      text-transform: uppercase;
-     font-weight: bold;
+     font-weight: 400;
+     font-size: 10px;
+     text-align: left;
+     column-gap: 1cap;          
    }
    
-   .task-priority.high {
-     background-color: #ff9900;
-   }
-   
-   .task-priority.medium {
-     background-color: #f9f99f;
-   }
-   
-   .task-priority.low {
-     background-color: #99ff99;
-   }
    
    .task-details {
      font-size: 0.9rem;
    }
-   
-   .task-checklist {
-     list-style: none;
-     padding-left: 0;
+  
+
+   .cardMainSectionbanner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
    }
    
    .checklist-item {
      margin-bottom: 0.25rem;
+   }
+
+   .validity{
+    padding: 0.9rem;
+    background-color: #CF3636;
+    color: white;
+    /* font-size: 14px; */
+    border-radius:0.9em; 
+   }
+
+   .statusList{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+   }
+
+   .statusItem{
+    border: #EEECEC 1px solid;
+    background-color: #EEECEC;
+    border-radius: 8px;
+    font-weight: 500;
+    color: #767575;
+    padding: 0.5em;
+    text-align: center;
+    text-wrap: balance;
+    text-size-adjust: inherit;
    }
