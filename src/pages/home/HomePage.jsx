@@ -27,13 +27,17 @@ const HomePage = () => {
       case "settings":
         return <Settings />;
       default:
-        return <div>Invalid section</div>;
+        return <DashBoardpage />;
     }
   };
 
   return (
     <div className={styleshomepage.homepage}>
-      <Sidebar onSectionChange={handleSectionChange} />
+      <Sidebar
+        onSectionChange={handleSectionChange}
+        currentsection={activeSection}
+        style={{ flex: "1 auto" }}
+      />
 
       <div className={styleshomepage.mainContainer}>
         <Navbar />

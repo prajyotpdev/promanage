@@ -53,8 +53,7 @@ const TaskCard = ({ task }) => {
     ? (dotColor = "#18B0FF")
     : (dotColor = "#63C05B");
 
-  useEffect(() => {
-  }, [isCollapsed]);
+  useEffect(() => {}, [isCollapsed]);
 
   return (
     <div className={styles.card}>

@@ -79,7 +79,7 @@ const SignInPage = () => {
   return (
     <div className={styles.signInContainer}>
       <div className={styles.leftSide}>
-        <img src={ArtImage} alt="Logo" />
+        <img src={ArtImage} alt="art_image" />
         <h2>Welcome aboard my friend</h2>
         <h4>just a couple of clicks and we start</h4>
       </div>
