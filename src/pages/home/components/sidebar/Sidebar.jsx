@@ -26,7 +26,7 @@ const Sidebar = ({ onSectionChange, currentsection }) => {
           currentsection === "board" ? styles.active : ""
         }`}
       >
-        <img src={BoardIcon} alt="logo" />
+        <img src={BoardIcon} alt="board_icon" />
         Board
       </button>
       <button

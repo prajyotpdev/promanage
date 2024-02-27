@@ -4,3 +4,27 @@
      list-style-type: none;
      padding-left: 0;
    }
+   .subtasklistItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+   }
+
+   .subtasklist > li{
+    border: #E2E2E2 1.5px solid;
+    border-radius: 1em;
+    background-color: transparent;
+    padding: 1rem;
+    margin: 1ch;
+  }
+  
+  input[type="checkbox"] {
+    transform: scale(1.5);
+    accent-color:  #17A2B8; 
+    margin: auto 1em;    
+    vertical-align: middle;    
+    border: 1px solid #ddd;
+    outline: none;
+    cursor: pointer;
+}

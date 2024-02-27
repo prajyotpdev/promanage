@@ -28,11 +28,11 @@ const SubTaskList = ({ subTaskCheckList, onCountChange }) => {
   return (
     <ul className={styles.subtasklist}>
       {subTaskCheckList.map((subtaskId) => (
-        <li key={subtaskId} className="checklist-item">
+        <li key={subtaskId} className={styles.subtasklistItem}>
           <input
             type="checkbox"
-            checked={checkedSubtasks.has(subtaskId)} // Check if subtask is checked
-            onChange={() => handleSubtaskChange(subtaskId)} // Call handler on click/change
+            checked={checkedSubtasks.has(subtaskId)} 
+            onChange={() => handleSubtaskChange(subtaskId)}
           />
           {subtaskId}
         </li>

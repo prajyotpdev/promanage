@@ -102,7 +102,7 @@ const TaskCard = ({ task }) => {
               <img
                 src={CollapsibleIcon}
                 alt="collapsible-icon"
-                style={{ transform: "scale(-1,-1)" }}
+                style={{ transform: "scaleY(-1)" }}
                 onClick={handleCollapsed}
               />
             )}
