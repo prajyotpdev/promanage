@@ -1,12 +1,9 @@
-import TaskCard from "../../components/task-card/TaskCard";
-import styles from "./DashboardPage.module.css";
-import CollapseAllIcon from "../../assets/icons/collapseAllIcon.svg";
-import Dropdown from "../../components/dropdown/Dropdown";
-import FilterForm from "../../components/dropdown/Dropdown";
-import StatusFeed from "./components/feed/StatusFeed";
-import Navbar from "../home/components/navbar/Navbar";
+import styles from "./StatusFeed.module.css";
+import CollapseAllIcon from "../../../../assets/icons/collapseAllIcon.svg";
 
-const DashBoardpage = () => {
+import TaskCard from "../../../../components/task-card/TaskCard";
+
+const StatusFeed = ({statusId}) => {
   const clearLocalStorage = () => {
     localStorage.clear();
     // You can also update the state or perform any other necessary actions
@@ -55,27 +52,21 @@ const DashBoardpage = () => {
 
   return (
     <>
-      <div className={styles.dashboardPage}>
-        <Navbar />
-        <div className={styles.dashboardHeader}>
-          Board
-          <FilterForm
-            data={currentTaskList}
-            onFilteredDataChange={handleFilteredDataChange}
-          />
-        </div>
-        <div className={styles.dashboardHeroContainer}>
-          {/* <button onClick={clearLocalStorage}>Clear</button> */}
-          <div className={styles.horizontailScroll}>
-            <StatusFeed statusId="Backlog" />
-            <StatusFeed statusId="To-do" />
-            <StatusFeed statusId="In progress" />
-            <StatusFeed statusId="Done" />
-          </div>
+      <div className={styles.tasksFeedContainer}>
+        <div className={styles.feed}>
+          <div className={styles.feedHeader}>
+            <div className={styles.feedTitle}>{statusId}</div>
+            <btn onClick={handleCollapseAll} className={styles.feedCollapseAll}>
+              <img src={CollapseAllIcon} alt="collapse_icon" />
+            </btn>
+          </div>  
+          <TaskCard task={currentTask} />
+          <TaskCard task={currentTask} />
+          <TaskCard task={currentTask} />
         </div>
       </div>
     </>
   );
 };
 
-export default DashBoardpage;
+export default StatusFeed;

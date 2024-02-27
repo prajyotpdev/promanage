@@ -38,13 +38,7 @@ const HomePage = () => {
         currentsection={activeSection}
         style={{ flex: "1 auto" }}
       />
-
-      <div className={styleshomepage.mainContainer}>
-        <Navbar />
-        <div className={styleshomepage.heroContainer}>
-          {renderSection()}
-        </div>{" "}
-      </div>
+      <div className={styleshomepage.heroContainer}>{renderSection()}</div>{" "}
     </div>
   );
 };

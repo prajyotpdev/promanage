@@ -47,6 +47,9 @@
     border-radius: 50%;
     display: inline-block;
   }
+  .dotColor {
+    background-color: var(--dot-color, #bbb);
+  }
   .collapsible{
    display: flex;
    align-items: center;
@@ -54,9 +57,6 @@
    width: 8%;
  }
   
-  .dotColor {
-    background-color: var(--dot-color, #bbb);
-  }
   .prioritybar{
     display: flex;
     flex-direction: row;

@@ -1,0 +1,61 @@
+.analyticsPage{    
+     display: flex;
+     flex-direction: column;
+     justify-content: start;
+ }
+
+ 
+.analyticsHeader{
+     font-size: 25px;
+     font-weight: 500;
+     font-style: normal;
+     height: 10vh;
+     display: flex;
+     flex-direction: row;
+     width: 75vw;
+     margin: 1em 2em;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .analyticsMainContainer{     
+     height: 70vh;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     justify-items: center;
+     padding-top: 2rem;
+     padding-left: 2rem;
+     padding-right: 2rem;
+
+ }
+ 
+ .dot{
+     height: var(--dot-height);
+     width: var(--dot-height);
+     border-radius: 50%;
+     display: inline-block;
+   }
+   .dotColor {
+     background-color: var(--dot-color, #dbd5d5);
+   }
+
+   .analticsItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+   }
+   .analyticsEntriesColumn{
+    width: 40%;
+    margin: 3em;
+   }
+   .analticsItem{
+    color: black;
+    font-size: 18px;
+   }
+   .analticsItemKey{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   }

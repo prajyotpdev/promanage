@@ -9,7 +9,6 @@ const SubTaskList = ({ subTaskCheckList, onCountChange }) => {
   );
 
   useEffect(() => {
-    console.log(checkedSubtasks);
   }, [checkedCount]);
 
   const handleSubtaskChange = (subtaskId) => {

@@ -15,9 +15,7 @@ import RegisterPage from "../pages/register/RegisterPage";
 const RouteManager = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log("State", state);
   const currentUser = useSelector(selectUser);
-  console.log("its selectUser" + JSON.stringify(currentUser));
   const [hasFetched, setHasFetched] = useState(false);
   const navigate = useNavigate();
   console.log("User:", !!currentUser);
