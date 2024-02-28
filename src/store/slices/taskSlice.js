@@ -1,12 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { jwtDecode } from 'jwt-decode';
 
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  const response = await fetch("http://localhost:8000/api/v1/task/all");
+  const userid= jwtDecode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWQ1ZDVmYWZkNTVlN2NhZGU0YzNmYjMiLCJpYXQiOjE3MDkxMTUyMDd9.8SCQMPZHUxUazn2powBB4C1lTkUJMdCn8Ddfmz6Ahrg").userId;
+  console.log("userid : "  + userid);
+  const response = await fetch("http://localhost:8000/api/v1/task/all?userid=${userid}");
   return response.json();
 });
 
-const taskPostSlice = createSlice({
-  name: "taskPost",
+const taskListSlice = createSlice({
+  name: "task",
   initialState: {
     isLoading: false,
     data: null,
@@ -27,4 +30,4 @@ const taskPostSlice = createSlice({
   },
 });
 
-   export default taskPostSlice.reducer;
+   export default taskListSlice.reducer;

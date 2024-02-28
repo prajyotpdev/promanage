@@ -6,6 +6,7 @@ export const fetchusers = createAsyncThunk("fetchusers", async () => {
 });
 
 const user = JSON.parse(localStorage.getItem("user"));
+console.log("this is user at localstorage " +user);
 // const initialState = user
 // ? { user }
 // : { user: null };
@@ -21,6 +22,7 @@ export const userSlice = createSlice({
      setUser: (state, action) => {
       console.log("action.payload is " + action.payload);
           state.user = action.payload;
+          localStorage.setItem("user", JSON.stringify(action.payload));
         },
         setLoading: (state, action) => {
           state.isLoading = action.payload;
@@ -64,7 +66,7 @@ export const registerAsync = (userData) => async (dispatch) => {
       if (signin.ok) {
         const responseJson = await signin.json();
         dispatch(setUser(responseJson));
-        console.log("Response from the server:", responseJson);
+        // console.log("Response from the server:", responseJson);
       } else {
         console.error("Signin failed with status:", signin.status);
       }

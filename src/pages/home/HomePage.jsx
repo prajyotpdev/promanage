@@ -2,9 +2,9 @@ import { useState } from "react";
 import User from "../../store/models/User";
 import styleshomepage from "../home/HomePage.module.css";
 import Sidebar from "./components/sidebar/Sidebar";
-import Navbar from "./components/navbar/Navbar";
 import DashBoardpage from "../dashboard/DashboardPage";
 import AnalyticsPage from "../analytics/AnalyticsPage";
+import SettingsPage from "../settings/SettingsPage";
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("MainSection"); // Track active section
@@ -25,7 +25,7 @@ const HomePage = () => {
       case "analytics":
         return <AnalyticsPage />;
       case "settings":
-        return <Settings />;
+        return <SettingsPage />;
       default:
         return <DashBoardpage />;
     }

@@ -3,23 +3,18 @@ import styles from "./TaskCard.module.css";
 import SubTaskList from "../subtask-list/SubTaskList";
 import CollapsibleIcon from "../../assets/icons/collapsibledropdown.svg";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({key, task , allCollapsed }) => {
   const { taskTitle, taskCheckList, taskValidity, taskStatus, taskPriority } =
     task;
 
   const formattedValidity = new Date(taskValidity).toLocaleString();
   const formattedStatus = taskStatus ? taskStatus : "Unknown";
   const options = {
-    // year: "numeric",
     month: "short",
     day: "numeric",
-    // hour: '2-digit',
-    // minute: '2-digit',
-    // second: '2-digit',
-    // daySuffix: 'numeric',
   };
   const [checkedsubtask, setCheckedsubtask] = useState(0);
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(allCollapsed);
   const [totalsubtasks, setTotalsubtasks] = useState(taskCheckList.length);
 
   const originalDate = new Date(taskValidity);
@@ -108,15 +103,14 @@ const TaskCard = ({ task }) => {
             )}
           </div>
         </div>
-
-        {isCollapsed ? (
+        {((!allCollapsed && !isCollapsed) || !isCollapsed || !allCollapsed)  ? (
           <SubTaskList
             subTaskCheckList={taskCheckList}
             onCountChange={handleCountChange}
           />
-        ) : (
+        ) :(
           <div style={{ height: "10px" }}></div>
-        )}
+        ) }
       </div>
       <div className={styles.cardfooter}>
         {taskValidity == "" ? (

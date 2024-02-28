@@ -1,7 +1,4 @@
-import TaskCard from "../../components/task-card/TaskCard";
 import styles from "./DashboardPage.module.css";
-import CollapseAllIcon from "../../assets/icons/collapseAllIcon.svg";
-import Dropdown from "../../components/dropdown/Dropdown";
 import FilterForm from "../../components/dropdown/Dropdown";
 import StatusFeed from "./components/feed/StatusFeed";
 import Navbar from "../home/components/navbar/Navbar";
@@ -53,6 +50,8 @@ const DashBoardpage = () => {
     console.log("Filtered Data:", filteredData);
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log("this is user at localstorage " +user.token);
   return (
     <>
       <div className={styles.dashboardPage}>
@@ -67,10 +66,10 @@ const DashBoardpage = () => {
         <div className={styles.dashboardHeroContainer}>
           {/* <button onClick={clearLocalStorage}>Clear</button> */}
           <div className={styles.horizontailScroll}>
-            <StatusFeed statusId="Backlog" />
-            <StatusFeed statusId="To-do" />
-            <StatusFeed statusId="In progress" />
-            <StatusFeed statusId="Done" />
+            <StatusFeed statusId="Backlog" key={1}/>
+            <StatusFeed statusId="To-do" key={2}/>
+            <StatusFeed statusId="In progress" key={3}/>
+            <StatusFeed statusId="Done" key={4}/>
           </div>
         </div>
       </div>

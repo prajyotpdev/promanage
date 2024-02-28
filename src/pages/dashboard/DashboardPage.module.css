@@ -11,8 +11,8 @@
     height: 5%;
     display: flex;
     flex-direction: row;
-    width: 75vw;
-    margin: 1em 1em;
+    width: 90%;
+    padding: 1em 1em;
     justify-content: space-between;
     align-items: center;
 }
@@ -24,7 +24,7 @@
 } */
 
 .dashboardHeroContainer{
-  width: 80vw;
+  width: 75vw;
   overflow-x: auto;
   display: flex;
   padding: 1rem;

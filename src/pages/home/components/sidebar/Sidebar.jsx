@@ -5,10 +5,24 @@ import BoardIcon from "../../../../assets/icons/boardIcon.svg";
 import AnalyticsIcon from "../../../../assets/icons/analyticsIcon.svg";
 import SettingsIcon from "../../../../assets/icons/settingsIcon.svg";
 import SignOutIcon from "../../../../assets/icons/signoutIcon.svg";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ onSectionChange, currentsection }) => {
   const handleClick = (section) => {
     onSectionChange(section);
+  };
+
+  const navigate = useNavigate();
+  
+const logout = () => {
+  console.log("Logout Sucessfully");
+  localStorage.removeItem("user");
+  navigate("/promanage/signin");
+};
+
+  const dumpAllData = () => {
+    localStorage.clear();
+    // You can also update the state or perform any other necessary actions
   };
 
   return (
@@ -48,7 +62,7 @@ const Sidebar = ({ onSectionChange, currentsection }) => {
         <img src={SettingsIcon} alt="logo" fill="black" />
         Settings
       </button>
-      <button onClick={() => {}} 
+      <button onClick={logout} 
         className={`${styles["sidebar-signout"]}`}>
         <img src={SignOutIcon} alt="logo" />
         Logout

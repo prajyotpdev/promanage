@@ -14,7 +14,7 @@ import RegisterPage from "../pages/register/RegisterPage";
 
 const RouteManager = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.user.user);
   const currentUser = useSelector(selectUser);
   const [hasFetched, setHasFetched] = useState(false);
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ const RouteManager = () => {
         path="/promanage/user"
         element={
           <RequireAuth>
-            <DashBoardpage />
+            <HomePage />
           </RequireAuth>
         }
       />

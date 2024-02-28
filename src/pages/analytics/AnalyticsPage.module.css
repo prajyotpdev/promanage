@@ -6,14 +6,14 @@
 
  
 .analyticsHeader{
+     height: 10vh;
      font-size: 25px;
      font-weight: 500;
      font-style: normal;
-     height: 10vh;
      display: flex;
      flex-direction: row;
-     width: 75vw;
-     margin: 1em 2em;
+     width: 100%;
+     padding: 1em 2em;
      justify-content: space-between;
      align-items: center;
  }
@@ -24,9 +24,7 @@
      display: flex;
      flex-direction: row;
      justify-items: center;
-     padding-top: 2rem;
-     padding-left: 2rem;
-     padding-right: 2rem;
+     padding: 1rem;
 
  }
  
@@ -48,7 +46,11 @@
    }
    .analyticsEntriesColumn{
     width: 40%;
+    height: auto;
     margin: 3em;
+    background-color: #F9FCFF;
+    border-radius: 10px;
+    padding: 2em;
    }
    .analticsItem{
     color: black;
