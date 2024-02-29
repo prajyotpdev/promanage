@@ -2,17 +2,27 @@ import React, { useEffect, useState } from "react";
 import styles from "./SubTaskList.module.css";
 
 const SubTaskList = ({ subTaskCheckList, onCountChange }) => {
-  const [checkedSubtasks, setCheckedSubtasks] = useState(new Set());
+  const [checkedSubtasks, setCheckedSubtasks] = useState(
+    Object.keys(subTaskCheckList).filter(
+      (subTaskId) => subTaskCheckList[subTaskId].isDone
+    )
+  );
 
   const [checkedCount, setCheckedCount] = useState(
-    subTaskCheckList.filter((subtask) => subtask.checked).length
+    Object.values(subTaskCheckList).filter((item) => item.isDone).length
   );
 
   useEffect(() => {
-  }, [checkedCount]);
+    console.log(checkedSubtasks);
+  }, [checkedCount, checkedSubtasks]);
 
   const handleSubtaskChange = (subtaskId) => {
+    console.log("this is subtaskID" + subtaskId);
     const updatedCheckedSubtasks = new Set(checkedSubtasks);
+
+    console.log(
+      "this is checkedSubtasks " + [...updatedCheckedSubtasks].join(" ")
+    );
     // prevCount = checkedCount;
     updatedCheckedSubtasks.has(subtaskId)
       ? updatedCheckedSubtasks.delete(subtaskId) &&
@@ -24,16 +34,25 @@ const SubTaskList = ({ subTaskCheckList, onCountChange }) => {
     onCountChange?.(checkedCount, subTaskCheckList.length);
   };
 
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <ul className={styles.subtasklist}>
-      {subTaskCheckList.map((subtaskId) => (
-        <li key={subtaskId} className={styles.subtasklistItem}>
+      {Object.values(subTaskCheckList).map((subtaskId, index) => (
+        <li
+          key={Object.keys(subTaskCheckList)[index]}
+          className={styles.subtasklistItem}
+        >
           <input
             type="checkbox"
-            checked={checkedSubtasks.has(subtaskId)} 
-            onChange={() => handleSubtaskChange(subtaskId)}
+            defaultChecked={subtaskId.isDone}
+            onChange={() =>
+              handleSubtaskChange(Object.keys(subTaskCheckList)[index])
+            }
           />
-          {subtaskId}
+          {subtaskId.subtaskName}
         </li>
       ))}
     </ul>

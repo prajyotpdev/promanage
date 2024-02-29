@@ -3,7 +3,7 @@ import styles from "./TaskCard.module.css";
 import SubTaskList from "../subtask-list/SubTaskList";
 import CollapsibleIcon from "../../assets/icons/collapsibledropdown.svg";
 
-const TaskCard = ({key, task , allCollapsed }) => {
+const TaskCard = ({ key, task, allCollapsed }) => {
   const { taskTitle, taskCheckList, taskValidity, taskStatus, taskPriority } =
     task;
 
@@ -15,7 +15,9 @@ const TaskCard = ({key, task , allCollapsed }) => {
   };
   const [checkedsubtask, setCheckedsubtask] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(allCollapsed);
-  const [totalsubtasks, setTotalsubtasks] = useState(taskCheckList.length);
+  const [totalsubtasks, setTotalsubtasks] = useState(
+    Object.keys(taskCheckList).length
+  );
 
   const originalDate = new Date(taskValidity);
   const formattedDate = originalDate.toLocaleString("en-US", options);
@@ -35,7 +37,7 @@ const TaskCard = ({key, task , allCollapsed }) => {
 
   const handleCountChange = (updatedChecked, total) => {
     setCheckedsubtask(updatedChecked);
-    setTotalsubtasks(total);
+    setTotalsubtasks(Object.keys(taskCheckList).length);
   };
 
   const handleCollapsed = () => {
@@ -103,14 +105,14 @@ const TaskCard = ({key, task , allCollapsed }) => {
             )}
           </div>
         </div>
-        {((!allCollapsed && !isCollapsed) || !isCollapsed || !allCollapsed)  ? (
+        {(!allCollapsed && !isCollapsed) || !isCollapsed || !allCollapsed ? (
           <SubTaskList
             subTaskCheckList={taskCheckList}
             onCountChange={handleCountChange}
           />
-        ) :(
+        ) : (
           <div style={{ height: "10px" }}></div>
-        ) }
+        )}
       </div>
       <div className={styles.cardfooter}>
         {taskValidity == "" ? (

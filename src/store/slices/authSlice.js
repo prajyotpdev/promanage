@@ -5,7 +5,13 @@ export const fetchusers = createAsyncThunk("fetchusers", async () => {
   return response.json();
 });
 
+export const fetchuserDetails = createAsyncThunk("fetchuserdetails", async () => {
+  const response = await fetch("http://localhost:8000/api/v1/job/all");
+  return response.json();
+});
+
 const user = JSON.parse(localStorage.getItem("user"));
+
 console.log("this is user at localstorage " +user);
 // const initialState = user
 // ? { user }

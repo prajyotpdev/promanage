@@ -1,5 +1,7 @@
 import React from "react";
 import stylesnavbar from "./Navbar.module.css";
+import { jwtDecode } from "jwt-decode";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const options = {
@@ -20,9 +22,12 @@ const Navbar = () => {
         : "")
     );
   }
+
+  const userName = useSelector((state) => state.user.user).name;
+
   return (
     <div className={stylesnavbar.navbar}>
-      <div className={stylesnavbar.navbaritem}>Welcome! Kumar</div>
+      <div className={stylesnavbar.navbaritem}>Welcome! {userName}</div>
       <div className={stylesnavbar.navbaritem}>
         {month} {getOrdinalNum(day)}, {year}
       </div>

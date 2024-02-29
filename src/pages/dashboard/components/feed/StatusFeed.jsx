@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 
-const StatusFeed = ({statusId}) => {
+const StatusFeed = ({ statusId }) => {
   const clearLocalStorage = () => {
     localStorage.clear();
     // You can also update the state or perform any other necessary actions
@@ -21,13 +21,20 @@ const StatusFeed = ({statusId}) => {
     taskTitle: "Task Title3",
     createdAt: "2024-02-12T12:34:56.789Z",
   };
-  
+
   // const state = useSelector((state) => state);
-  const userID = jwtDecode(useSelector((state) => state.user.user).token).userId;
-  console.log("UserID :"+userID)
+  const userID = jwtDecode(
+    useSelector((state) => state.user.user).token
+  ).userId;
+  console.log("UserID :" + userID);
   const currentTaskList = [
     {
-      taskCheckList: [],
+      taskCheckList: {
+        id1: { subtaskName: "subtaskName1", isDone: true },
+        id2: { subtaskName: "subtaskName2", isDone: false },
+        id3: { subtaskName: "subtaskName3", isDone: true },
+        id4: { subtaskName: "subtaskName4", isDone: false },
+      },
       _id: "65d60bb73545645bde5552ff",
       taskStatus: "Done",
       taskTitle: "Task Title3",
@@ -42,7 +49,12 @@ const StatusFeed = ({statusId}) => {
       taskStatus: "In Progress",
       taskPriority: "Moderate",
       taskValidity: "2024-02-22T12:34:56.789Z",
-      taskCheckList: ["subtask1", "subtask2", "subtask3"],
+      taskCheckList: {
+        id1: { subtaskName: "subtaskName1", isDone: true },
+        id2: { subtaskName: "subtaskName2", isDone: false },
+        id3: { subtaskName: "subtaskName3", isDone: true },
+        id4: { subtaskName: "subtaskName4", isDone: false },
+      },
       __v: 0,
       createdBy: "65d5d5fafd55e7cade4c3fb3",
       createdAt: "2022-02-03T12:34:56.789+00:00",
@@ -53,7 +65,12 @@ const StatusFeed = ({statusId}) => {
       taskStatus: "Done",
       taskPriority: "High",
       taskValidity: "2024-02-12T12:34:56.789Z",
-      taskCheckList: ["subtask6", "subtask3", "subtask1"],
+      taskCheckList: {
+        id1: { subtaskName: "subtaskName1", isDone: true },
+        id2: { subtaskName: "subtaskName2", isDone: false },
+        id3: { subtaskName: "subtaskName3", isDone: true },
+        id4: { subtaskName: "subtaskName4", isDone: false },
+      },
       __v: 0,
       createdBy: "65d5d5fafd55e7cade4c3fb3",
       createdAt: "2022-02-03T13:34:56.789+00:00",
@@ -82,14 +99,21 @@ const StatusFeed = ({statusId}) => {
             <div onClick={handleCollapseAll} className={styles.feedCollapseAll}>
               <img src={CollapseAllIcon} alt="collapse_icon" />
             </div>
-            {statusId=="To-do" ?<div onClick={handleAddTodoClicked} className={styles.addTodo}>
-              <img src={AddTodoIcon} alt="collapse_icon" />
-            </div>:null}
-          </div>  
-          
-          {currentTaskList.map((currentTask) =>(
-            <TaskCard task={currentTask} allCollapsed={allCollapsed} key= {currentTask._id}/>))}
-          
+            {statusId == "To-do" ? (
+              <div onClick={handleAddTodoClicked} className={styles.addTodo}>
+                <img src={AddTodoIcon} alt="collapse_icon" />
+              </div>
+            ) : null}
+          </div>
+
+          {currentTaskList.map((currentTask) => (
+            <TaskCard
+              task={currentTask}
+              allCollapsed={allCollapsed}
+              key={currentTask._id}
+            />
+          ))}
+
           {/* <TaskCard task={currentTask} allCollapsed={allCollapsed} key= {currentTask.id}/> */}
         </div>
       </div>
