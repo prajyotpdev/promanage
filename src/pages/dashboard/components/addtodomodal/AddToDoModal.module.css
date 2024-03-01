@@ -7,7 +7,7 @@
      flex-direction: column;
      align-items: start;
      justify-content: space-between;
-     height: 100%;
+     height: auto;
      border-radius: 20px;
    }
    
@@ -135,8 +135,36 @@
   justify-content: flex-start;
   flex-direction: row;
   column-gap: 1ch;
+  color: #767575;
+  font-weight: 500;
+  cursor: pointer;
 }
+
 .todoSection{
-  margin: 20px 0px;
+  margin: 1vh 0px;
   width: 100%;
+  height: auto;
+}
+
+.addedTaskItem{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  border: #E2E2E2 2px solid;
+  border-radius: 12px;
+  height: 44px;
+  width: 100%;
+  column-gap: 3ch;
+  padding:  0px 10px;
+}
+
+.addedTaskList >li{
+  list-style-type: none
+}
+.addedTaskItem #id :focus {     
+  background-color:yellow;    
+}
+
+.datepicker{
+  display: unset;
 }

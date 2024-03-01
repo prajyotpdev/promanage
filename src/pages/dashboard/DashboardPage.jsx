@@ -2,20 +2,14 @@ import styles from "./DashboardPage.module.css";
 import FilterForm from "../../components/dropdown/Dropdown";
 import StatusFeed from "./components/feed/StatusFeed";
 import Navbar from "../home/components/navbar/Navbar";
+import { fetchTasks } from "../../store/slices/taskSlice";
+import { useDispatch } from "react-redux";
+import SolidButton from "../../components/buttons/SolidButton/SolidButton";
 
 const DashBoardpage = () => {
   const clearLocalStorage = () => {
     localStorage.clear();
     // You can also update the state or perform any other necessary actions
-  };
-
-  const currentTask = {
-    taskCheckList: ["subtaksid1", "subtaksid2", "subtaksid3"],
-    taskValidity: "2024-02-22T12:34:56.789Z",
-    taskStatus: "Done",
-    taskPriority: "Moderate",
-    taskTitle: "Task Title3",
-    createdAt: "2024-02-12T12:34:56.789Z",
   };
 
   const currentTaskList = [
@@ -41,6 +35,8 @@ const DashBoardpage = () => {
       createdAt: "2022-02-03T12:34:56.789+00:00",
     },
   ];
+  
+  const dispatch = useDispatch();
 
   const handleCollapseAll = (section) => {
     onSectionChange(section);
@@ -50,8 +46,13 @@ const DashBoardpage = () => {
     console.log("Filtered Data:", filteredData);
   };
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log("this is user at localstorage " +user.token);
+  const handleGetAllTasks = async (e) => {
+    dispatch(
+      fetchTasks()
+    );
+    // onClose();
+  };
+
   return (
     <>
       <div className={styles.dashboardPage}>
@@ -62,7 +63,8 @@ const DashBoardpage = () => {
             data={currentTaskList}
             onFilteredDataChange={handleFilteredDataChange}
           />
-        </div>
+        </div>                   
+            <SolidButton bgcolor={"#FF2473"} fontColor={"#FFFFFF"} onClick={handleGetAllTasks}>Test</SolidButton>  
         <div className={styles.dashboardHeroContainer}>
           {/* <button onClick={clearLocalStorage}>Clear</button> */}
           <div className={styles.horizontailScroll}>

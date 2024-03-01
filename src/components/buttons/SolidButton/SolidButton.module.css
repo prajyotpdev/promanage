@@ -1,0 +1,10 @@
+.solidbutton{
+    background-color:  var(--bg-color, #bbb);
+    border: var(--border-color, transparent) 1px solid;
+    color: var(--font-color, #bbb);
+    border-radius: 12px;
+    padding: 17px 2em;
+    font-family: "Poppins";
+    min-width: 150px;
+    font-weight: 500;
+}

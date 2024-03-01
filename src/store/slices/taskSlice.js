@@ -1,12 +1,44 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { jwtDecode } from 'jwt-decode';
+import { useSelector } from 'react-redux';
+
+export const createTask = createAsyncThunk("createTask", async (taskData) => {
+  
+  const jwttoken = JSON.parse(localStorage.getItem("user")).token;
+    const response = await fetch("http://localhost:8000/api/v1/task/create",{
+      method: 'POST',
+      headers : {
+        Authorization: jwttoken,      
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(taskData),
+    });
+    return response.json();
+  });
 
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  const userid= jwtDecode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWQ1ZDVmYWZkNTVlN2NhZGU0YzNmYjMiLCJpYXQiOjE3MDkxMTUyMDd9.8SCQMPZHUxUazn2powBB4C1lTkUJMdCn8Ddfmz6Ahrg").userId;
-  console.log("userid : "  + userid);
-  const response = await fetch("http://localhost:8000/api/v1/task/all?userid=${userid}");
+  const jwttoken = JSON.parse(localStorage.getItem("user")).token;
+  const response = await fetch("http://localhost:8000/api/v1/task/all",{
+    headers : {
+      Authorization: jwttoken,      
+      'Content-Type': 'application/json',
+    },
+  });
   return response.json();
 });
+
+
+  export const fetchTaskByStatus = createAsyncThunk("fetchTaskByStatus", async (status) => {
+    
+  const jwttoken = JSON.parse(localStorage.getItem("user")).token;
+    const response = await fetch("http://localhost:8000/api/v1/task/all?status=${status}",{
+      headers : {
+        Authorization: jwttoken,      
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.json();
+  });
 
 const taskListSlice = createSlice({
   name: "task",
@@ -22,9 +54,37 @@ const taskListSlice = createSlice({
     builder.addCase(fetchTasks.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
+      // state.doneTasks = action.payload.filter(task => task.taskStatus === 'Done');
+      // state.todoTasks = action.payload.filter(task => task.taskStatus === 'To-do');
+      // state.backlogTasks = action.payload.filter(task => task.taskStatus === 'Backlog');
+      // state.inProgressTasks = action.payload.filter(task => task.taskStatus === 'In-Progress');
     });
     builder.addCase(fetchTasks.rejected, (state, action) => {
       console.log("Error", action.payload);
+      state.isError = true;
+    });
+    builder.addCase(createTask.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(createTask.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(createTask.rejected, (state, action) => {
+      console.error('Error creating task:', action.error.message);
+      state.isLoading = false;
+      state.isError = true;
+    });
+    builder.addCase(fetchTaskByStatus.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchTaskByStatus.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(fetchTaskByStatus.rejected, (state, action) => {
+      console.error('Error fetchTaskByStatus:', action.error.message);
+      state.isLoading = false;
       state.isError = true;
     });
   },

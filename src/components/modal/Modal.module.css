@@ -24,11 +24,15 @@
      z-index: 20;
      background-color: white;
      padding: 2.5em;
+     display: block;
      border-radius: 22px;
      animation-duration :0.4s;
+     height: 80%;
      animation-name :animatetop;
      -webkit-animation-name: animatetop;
      -webkit-animation-duration: 0.4s;
+     scroll-behavior: smooth;
+     overflow-y: scroll;
    }
    
    .closeButton {
@@ -57,4 +61,7 @@
       top: 0;
       opacity: 1;
     }
+  }
+  .content::-webkit-scrollbar {
+    display: none;
   }
