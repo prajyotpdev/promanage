@@ -42,7 +42,6 @@ const DashBoardpage = () => {
 
   useEffect(() => {
     dispatch(fetchTasks());
-    
   }, [dispatch]);
 
   const handleCollapseAll = (section) => {

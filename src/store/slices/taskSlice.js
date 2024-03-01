@@ -3,9 +3,10 @@ import { jwtDecode } from 'jwt-decode';
 import { useSelector } from 'react-redux';
 
 export const createTask = createAsyncThunk("createTask", async (taskData) => {
-  
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  console.log(baseUrl);
   const jwttoken = JSON.parse(localStorage.getItem("user")).token;
-    const response = await fetch("http://localhost:8000/api/v1/task/create",{
+    const response = await fetch(`${baseUrl}/api/v1/task/create`,{
       method: 'POST',
       headers : {
         Authorization: jwttoken,      
@@ -17,8 +18,9 @@ export const createTask = createAsyncThunk("createTask", async (taskData) => {
   });
 
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const jwttoken = JSON.parse(localStorage.getItem("user")).token;
-  const response = await fetch("http://localhost:8000/api/v1/task/all",{
+  const response = await fetch(`${baseUrl}/api/v1/task/all`,{
     headers : {
       Authorization: jwttoken,      
       'Content-Type': 'application/json',
@@ -54,7 +56,7 @@ const taskListSlice = createSlice({
     builder.addCase(fetchTasks.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
-      console.log("this is action.payload " + action.payload);
+      console.log("this is action.payload " + action.payload)
       // state.doneTasks = action.payload.filter(task => task.taskStatus === 'Done');
       // state.todoTasks = action.payload.filter(task => task.taskStatus === 'To-do');
       // state.backlogTasks = action.payload.filter(task => task.taskStatus === 'Backlog');
