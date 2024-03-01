@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+const API_URL = `${baseUrl}/api/auth/`;
 
 const register = (username, email, password) => {
   return axios.post(API_URL + "signup", {

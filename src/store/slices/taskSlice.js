@@ -31,9 +31,9 @@ export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
 
 
   export const fetchTaskByStatus = createAsyncThunk("fetchTaskByStatus", async (status) => {
-    
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const jwttoken = JSON.parse(localStorage.getItem("user")).token;
-    const response = await fetch("http://localhost:8000/api/v1/task/all?status=${status}",{
+    const response = await fetch(`${baseUrl}/api/v1/task/all?status=${status}`,{
       headers : {
         Authorization: jwttoken,      
         'Content-Type': 'application/json',

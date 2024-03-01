@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const fetchusers = createAsyncThunk("fetchusers", async () => {
-  const response = await fetch("http://localhost:8000/api/v1/job/all");
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  const response = await fetch(`${baseUrl}/api/v1/job/all`);
   return response.json();
 });
 
 export const fetchuserDetails = createAsyncThunk("fetchuserdetails", async () => {
-  const response = await fetch("http://localhost:8000/api/v1/job/all");
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  const response = await fetch(`${baseUrl}/api/v1/job/all`);
   return response.json();
 });
 
@@ -46,8 +48,9 @@ export const selectUser = (state) => state.user.user;
 export const registerAsync = (userData) => async (dispatch) => {
      dispatch(setLoading(true));
    
-     try {
-       const response = await axios.post('http://localhost:8000/api/v1/auth/register', userData);
+     try {      
+      const baseUrl = import.meta.env.VITE_API_BASE_URL;
+       const response = await axios.post(`${baseUrl}/api/v1/auth/register`, userData);
        dispatch(setUser(response.data));
      } catch (error) {
        dispatch(setError(true));
@@ -60,8 +63,9 @@ export const registerAsync = (userData) => async (dispatch) => {
    export const loginAsync = (userData) => async (dispatch) => {
      dispatch(setLoading(true));
    
-     try {
-       const signin = await fetch("http://localhost:8000/api/v1/auth/login", {
+     try {  
+      const baseUrl = import.meta.env.VITE_API_BASE_URL;
+       const signin = await fetch(`${baseUrl}/api/v1/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

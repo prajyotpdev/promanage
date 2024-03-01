@@ -55,7 +55,8 @@ const RegisterPage = () => {
     };
 
     try {
-      const add = await fetch("http://localhost:8000/api/v1/auth/register", {
+      const baseUrl = import.meta.env.VITE_API_BASE_URL;
+      const add = await fetch(`${baseUrl}/api/v1/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
