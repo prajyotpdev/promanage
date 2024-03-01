@@ -19,12 +19,13 @@
     margin: 1ch;
   }
   
-  input[type="checkbox"] {
-    transform: scale(1.5);
+  .subtasklistItem >  input[type="checkbox" ] {
     accent-color:  #17A2B8; 
     margin: auto 1em;    
     vertical-align: middle;    
     border: 1px solid #ddd;
     outline: none;
-    cursor: pointer;
+    cursor: pointer;width: 20px;
+    height: 20px;
+  
 }

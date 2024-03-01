@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./TaskCard.module.css";
 import SubTaskList from "../subtask-list/SubTaskList";
 import CollapsibleIcon from "../../assets/icons/collapsibledropdown.svg";
+import DotIndicator from "../dotindicator/DotIndicator.jsx";
 
 const TaskCard = ({ key, task, allCollapsed }) => {
   const { taskTitle, taskCheckList, taskValidity, taskStatus, taskPriority } =
@@ -13,7 +14,11 @@ const TaskCard = ({ key, task, allCollapsed }) => {
     month: "short",
     day: "numeric",
   };
-  const [checkedsubtask, setCheckedsubtask] = useState(0);
+  const [checkedsubtask, setCheckedsubtask] = useState(
+    Object.keys(taskCheckList).filter(
+      (subTaskId) => taskCheckList[subTaskId].isDone
+    ).length
+  );
   const [isCollapsed, setIsCollapsed] = useState(allCollapsed);
   const [totalsubtasks, setTotalsubtasks] = useState(
     Object.keys(taskCheckList).length
@@ -50,17 +55,14 @@ const TaskCard = ({ key, task, allCollapsed }) => {
     ? (dotColor = "#18B0FF")
     : (dotColor = "#63C05B");
 
-  useEffect(() => {}, [isCollapsed]);
+  useEffect(() => {}, [isCollapsed, checkedsubtask]);
 
   return (
     <div className={styles.card}>
       <div className={styles.cardheader}>
         <div className={styles.prioritybar}>
           <div className={styles.priority}>
-            <span
-              className={`${styles.dot} ${styles.dotColor}`}
-              style={{ "--dot-height": "10px", "--dot-color": dotColor }}
-            ></span>{" "}
+            <DotIndicator dotColor={dotColor} height={"10px"} />{" "}
             <span className={styles.nothing}>
               {taskPriority.toUpperCase()} PRIORITY
             </span>

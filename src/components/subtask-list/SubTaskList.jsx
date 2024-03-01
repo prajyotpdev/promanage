@@ -13,16 +13,13 @@ const SubTaskList = ({ subTaskCheckList, onCountChange }) => {
   );
 
   useEffect(() => {
-    console.log(checkedSubtasks);
+    onCountChange?.(checkedCount, subTaskCheckList.length);
   }, [checkedCount, checkedSubtasks]);
 
   const handleSubtaskChange = (subtaskId) => {
     console.log("this is subtaskID" + subtaskId);
     const updatedCheckedSubtasks = new Set(checkedSubtasks);
 
-    console.log(
-      "this is checkedSubtasks " + [...updatedCheckedSubtasks].join(" ")
-    );
     // prevCount = checkedCount;
     updatedCheckedSubtasks.has(subtaskId)
       ? updatedCheckedSubtasks.delete(subtaskId) &&
@@ -46,7 +43,7 @@ const SubTaskList = ({ subTaskCheckList, onCountChange }) => {
           className={styles.subtasklistItem}
         >
           <input
-            type="checkbox"
+            type="checkbox" 
             defaultChecked={subtaskId.isDone}
             onChange={() =>
               handleSubtaskChange(Object.keys(subTaskCheckList)[index])

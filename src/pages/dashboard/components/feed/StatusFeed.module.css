@@ -33,3 +33,29 @@
    .tasksFeedContainer::-webkit-scrollbar {
      display: none;
    }
+
+   .addTodo{
+    background-color: transparent;
+    border: transparent;
+    margin-left: auto ;
+    margin-right: 2em ;
+   }
+
+   
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalFooter {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}

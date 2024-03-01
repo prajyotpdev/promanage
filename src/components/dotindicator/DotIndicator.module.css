@@ -1,0 +1,10 @@
+
+.dot{
+     height: var(--dot-height);
+     width: var(--dot-height);
+     border-radius: 50%;
+     display: inline-block;
+   }
+   .dotColor {
+     background-color: var(--dot-color, #bbb);
+   }

@@ -6,6 +6,8 @@ import TaskCard from "../../../../components/task-card/TaskCard";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
+import Modal from "../../../../components/modal/Modal";
+import AddToDoModal from "../addtodomodal/AddToDoModal";
 
 const StatusFeed = ({ statusId }) => {
   const clearLocalStorage = () => {
@@ -78,12 +80,21 @@ const StatusFeed = ({ statusId }) => {
   ];
 
   const [allCollapsed, setAllCollapsed] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openTodoModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   const handleCollapseAll = () => {
     setAllCollapsed(!allCollapsed);
   };
   const handleAddTodoClicked = (section) => {
-    addTodo();
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleFilteredDataChange = (filteredData) => {
@@ -96,14 +107,15 @@ const StatusFeed = ({ statusId }) => {
         <div className={styles.feed}>
           <div className={styles.feedHeader}>
             <div className={styles.feedTitle}>{statusId}</div>
+
+            {statusId == "To-do" ? (
+              <button onClick={openTodoModal} className={styles.addTodo}>
+                <img src={AddTodoIcon} alt="collapse_icon" />
+              </button>
+            ) : null}
             <div onClick={handleCollapseAll} className={styles.feedCollapseAll}>
               <img src={CollapseAllIcon} alt="collapse_icon" />
             </div>
-            {statusId == "To-do" ? (
-              <div onClick={handleAddTodoClicked} className={styles.addTodo}>
-                <img src={AddTodoIcon} alt="collapse_icon" />
-              </div>
-            ) : null}
           </div>
 
           {currentTaskList.map((currentTask) => (
@@ -113,6 +125,9 @@ const StatusFeed = ({ statusId }) => {
               key={currentTask._id}
             />
           ))}
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <AddToDoModal onClose={closeModal} />
+          </Modal>
 
           {/* <TaskCard task={currentTask} allCollapsed={allCollapsed} key= {currentTask.id}/> */}
         </div>
