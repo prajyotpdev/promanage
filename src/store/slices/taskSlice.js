@@ -54,6 +54,7 @@ const taskListSlice = createSlice({
     builder.addCase(fetchTasks.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
+      console.log("this is action.payload " + action.payload);
       // state.doneTasks = action.payload.filter(task => task.taskStatus === 'Done');
       // state.todoTasks = action.payload.filter(task => task.taskStatus === 'To-do');
       // state.backlogTasks = action.payload.filter(task => task.taskStatus === 'Backlog');

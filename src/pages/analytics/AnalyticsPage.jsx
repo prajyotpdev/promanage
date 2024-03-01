@@ -1,27 +1,88 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./AnalyticsPage.module.css";
-
-
-const updateValuesMap = (tasks) => {
-  const valuesMapCopy = { ...valuesMap };
-
-  // Update values based on tasks
-  valuesMapCopy.backlog_tests.value = tasks.filter(task => task.taskStatus === 'Backlog').length;
-  valuesMapCopy.low_priority.value = tasks.filter(task => task.taskPriority === 'Low').length;
-  valuesMapCopy.todo_tasks.value = tasks.filter(task => task.taskStatus === 'To-Do').length;
-  valuesMapCopy.moderate_priority.value = tasks.filter(task => task.taskPriority === 'Moderate').length;
-  valuesMapCopy.inprogress_tasks.value = tasks.filter(task => task.taskStatus === 'In-Progress').length;
-  valuesMapCopy.high_priority.value = tasks.filter(task => task.taskPriority === 'High').length;
-  valuesMapCopy.completed_tasks.value = tasks.filter(task => task.taskStatus === 'Done').length;
-
-  return valuesMapCopy;
-};
-
+import { fetchTasks } from "../../store/slices/taskSlice";
+import { useEffect } from "react";
 
 const AnalyticsPage = () => {
-console.log("this is state.tasks.tasks.data :" + useSelector((state) => state.tasks));
-  const updatedValuesMap = updateValuesMap();
+  const dispatch = useDispatch();
+
+  const handleGetAllTasks = async (e) => {
+    dispatch(fetchTasks());
+  };
+  const valuesMapCpy = {
+    backlog_tests: {
+      title: "Backlog Tests",
+      value: 16,
+    },
+    low_priority: {
+      title: "Low Priority Tasks",
+      value: 4,
+    },
+    todo_tasks: {
+      title: "To-do Tasks",
+      value: 14,
+    },
+    moderate_priority: {
+      title: "Moderate Priority Tasks",
+      value: 16,
+    },
+    inprogress_tasks: {
+      title: "In-Progress Tasks",
+      value: 3,
+    },
+    high_priority: {
+      title: "High Priority Tasks",
+      value: 1,
+    },
+    completed_tasks: {
+      title: "Completed Tasks",
+      value: 16,
+    },
+    due_date_tasks: {
+      title: "Due Date Tasks",
+      value: 16,
+    },
+  };
+
+  const updateValuesMap = (tasks) => {
+    const valuesMapCopy = valuesMapCpy;
+
+    valuesMapCopy.backlog_tests.value = tasks.filter(
+      (task) => task.taskStatus === "Backlog"
+    ).length;
+    valuesMapCopy.low_priority.value = tasks.filter(
+      (task) => task.taskPriority === "Low"
+    ).length;
+    valuesMapCopy.todo_tasks.value = tasks.filter(
+      (task) => task.taskStatus === "To-Do"
+    ).length;
+    valuesMapCopy.moderate_priority.value = tasks.filter(
+      (task) => task.taskPriority === "Moderate"
+    ).length;
+    valuesMapCopy.inprogress_tasks.value = tasks.filter(
+      (task) => task.taskStatus === "In-Progress"
+    ).length;
+    valuesMapCopy.high_priority.value = tasks.filter(
+      (task) => task.taskPriority === "High"
+    ).length;
+    valuesMapCopy.completed_tasks.value = tasks.filter(
+      (task) => task.taskStatus === "Done"
+    ).length;
+
+    return valuesMapCopy;
+  };
+  if (useSelector((state) => state.tasks) == undefined || null) {
+    handleGetAllTasks;
+  }
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
+
+  const updatedValuesMap = updateValuesMap(
+    useSelector((state) => state.task.data.data)
+  );
   const valuesMap = updatedValuesMap;
+
   return (
     <div>
       <div className={styles.analyticsPage}>

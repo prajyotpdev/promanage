@@ -5,6 +5,7 @@ import Navbar from "../home/components/navbar/Navbar";
 import { fetchTasks } from "../../store/slices/taskSlice";
 import { useDispatch } from "react-redux";
 import SolidButton from "../../components/buttons/SolidButton/SolidButton";
+import { useEffect, useState } from "react";
 
 const DashBoardpage = () => {
   const clearLocalStorage = () => {
@@ -35,8 +36,14 @@ const DashBoardpage = () => {
       createdAt: "2022-02-03T12:34:56.789+00:00",
     },
   ];
-  
+  const [taskList, setTaskList] = useState(currentTaskList);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+    
+  }, [dispatch]);
 
   const handleCollapseAll = (section) => {
     onSectionChange(section);
@@ -47,9 +54,7 @@ const DashBoardpage = () => {
   };
 
   const handleGetAllTasks = async (e) => {
-    dispatch(
-      fetchTasks()
-    );
+    dispatch(fetchTasks());
     // onClose();
   };
 
@@ -63,15 +68,21 @@ const DashBoardpage = () => {
             data={currentTaskList}
             onFilteredDataChange={handleFilteredDataChange}
           />
-        </div>                   
-            <SolidButton bgcolor={"#FF2473"} fontColor={"#FFFFFF"} onClick={handleGetAllTasks}>Test</SolidButton>  
+        </div>
+        <SolidButton
+          bgcolor={"#FF2473"}
+          fontColor={"#FFFFFF"}
+          onClick={handleGetAllTasks}
+        >
+          Test
+        </SolidButton>
         <div className={styles.dashboardHeroContainer}>
           {/* <button onClick={clearLocalStorage}>Clear</button> */}
           <div className={styles.horizontailScroll}>
-            <StatusFeed statusId="Backlog" key={1}/>
-            <StatusFeed statusId="To-do" key={2}/>
-            <StatusFeed statusId="In progress" key={3}/>
-            <StatusFeed statusId="Done" key={4}/>
+            <StatusFeed statusId="Backlog" key={1} />
+            <StatusFeed statusId="To-do" key={2} />
+            <StatusFeed statusId="In progress" key={3} />
+            <StatusFeed statusId="Done" key={4} />
           </div>
         </div>
       </div>
